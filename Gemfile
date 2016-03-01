@@ -52,4 +52,8 @@ gem 'mini_magick', '~> 4.3'
 # Use paginator
 gem 'kaminari'
 
+# Use CSS Framework
+gem 'bourbon'
+gem 'neat'
+
 gem 'rspec-rails'

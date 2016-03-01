@@ -27,6 +27,9 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     bcrypt-ruby (3.0.1)
+    bourbon (3.2.4)
+      sass (~> 3.2)
+      thor
     builder (3.1.4)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -64,6 +67,9 @@ GEM
     mini_magick (4.4.0)
     minitest (4.7.5)
     multi_json (1.11.2)
+    neat (1.5.1)
+      bourbon (>= 3.1)
+      sass (~> 3.2.19)
     polyglot (0.3.5)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -145,12 +151,14 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
+  bourbon
   carrierwave (~> 0.10.0)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
   mini_magick (~> 4.3)
+  neat
   pry-rails
   rails (= 4.0.0)
   rspec-rails
