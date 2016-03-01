@@ -18,7 +18,7 @@ class Movie < ActiveRecord::Base
   validates :release_date,
     presence: true
 
-  validate :releate_date_is_in_the_past
+  validate :release_date_is_in_the_past
 
   protected
 
@@ -27,5 +27,5 @@ class Movie < ActiveRecord::Base
       errors.add(:release_date, 'should be in the past') if release_date > Date.today
     end
   end
-  
+
 end
