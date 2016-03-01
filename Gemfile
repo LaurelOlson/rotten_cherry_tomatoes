@@ -49,4 +49,7 @@ gem 'pry-rails', group: [:development, :test]
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
 
+# Use paginator
+gem 'kaminari'
+
 gem 'rspec-rails'

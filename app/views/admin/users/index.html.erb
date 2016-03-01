@@ -1,4 +1,6 @@
 <h1>Users</h1>
+<hr>
+
 <%= link_to "Add an admin", new_admin_user_path %>
 <hr>
 <table>
@@ -17,3 +19,8 @@
     </tr>
   <% end %>
 </table>
+
+<br>
+<%= paginate @users %>
+<%= page_entries_info @users %>
+<hr/>
