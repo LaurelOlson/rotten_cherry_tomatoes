@@ -1,4 +1,4 @@
-<%= form_for @movie do |f| %>
+<%= form_for @movie, html: { multipart: true } do |f| %>
 
   <% if @movie.errors.any? %>
     <div>
@@ -28,8 +28,13 @@
     <%= f.number_field :runtime_in_minutes %>
   </div>
   <div>
-    <%= f.label :movie_poster %><br>
-    <%= f.file_field :movie_poster %>
+    <%= f.label :poster_image %><br>
+    <%= f.file_field :poster_image %><br>
+    <% if f.object.poster_image? %>
+      <%= image_tag f.object.poster_image.url %><br>
+      <%= f.label :remove_poster_image %>
+      <%= f.check_box :remove_poster_image %>
+    <% end %>
   </div>
   <div>
     <%= f.label :description %><br>
