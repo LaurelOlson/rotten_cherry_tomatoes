@@ -5,10 +5,21 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def restrict_access
+  def restrict_access_login
     if !current_user
       flash[:alert] = 'You must log in'
       redirect_to new_session_path
+    end
+  end
+
+  def restrict_access_admin
+    if !current_user || current_user.admin != 1
+      flash[:alert] = 'Admin access only'
+      if current_user
+        redirect_to movies_path
+      else 
+        redirect_to new_session_path
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
   before_filter :load_movie
-  before_filter :restrict_access
+  before_filter :restrict_access_login
 
   def new
     @review = @movie.reviews.build # .build assigns movie_id to @review
