@@ -42,7 +42,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'pry-rails', group: [:development, :test]
+# gem 'pry-byebug', group: [:development, :test]
 
 # Use file uploader
 gem 'carrierwave', '~> 0.10.0'
