@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "laurel.olson@outlook.com"
 
   def deleted_email(user)
     @user = user
