@@ -6,6 +6,8 @@ RottenMangoes::Application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  get '/movies/search/:q', to: 'movies#search'
+
   resources :users, only: [:new, :create]
 
   resources :sessions, only: [:new, :create, :destroy]
