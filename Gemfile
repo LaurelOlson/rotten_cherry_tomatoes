@@ -56,4 +56,7 @@ gem 'kaminari'
 gem 'bourbon'
 gem 'neat'
 
+# User data faker
+gem 'faker', '~> 1.6.3'
+
 gem 'rspec-rails'
