@@ -6,26 +6,50 @@ class Admin::UsersController < ApplicationController
     @users = User.order(:firstname).page(params[:page]).per(10)
   end
 
-  # def new
-  #   @admin = User.new
-  # end
+  def new
+    @user = User.new
+  end
 
-  # def create
-  #   @admin = User.create(user_params)
+  def create
+    @user = User.create(user_params)
 
-  #   if @admin.save
-  #     session[:user_id] = @admin.id
-  #     redirect_to admin_users_path, notice "New admin #{@admin.full_name} successfully created"
-  #   else
-  #     render :admin_new
-  #   end
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to admin_users_path, notice: "New user #{@user.full_name} successfully created"
+    else
+      render :new
+    end
 
-  # end
+  end
 
-  # protected
+  def show
+    @user = User.find(params[:id])
+  end
 
-  # def user_params
-  #   params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
-  # end
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(user_params)
+      redirect_to admin_users_path, notice: "User successfully updated"
+    else
+      render :edit
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path, notice: "user deleted"
+  end
+
+  protected
+
+  def user_params
+    params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :admin)
+  end
 
 end
