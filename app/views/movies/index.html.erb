@@ -2,11 +2,5 @@
 <%= render 'search_form' %>
 <hr>
 <% @movies.each do |movie| %>
-  <%= link_to image_tag(movie.poster_image.url), movie_path(movie) %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= movie.review_average %>
-  <h3><%= formatted_date(movie.release_date) %></h3>
-  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes </h4>
-  <p><%= movie.description %></p>
-  <hr>
+  <%= render partial: 'movie', locals: { movie: movie } %>
 <% end %>
