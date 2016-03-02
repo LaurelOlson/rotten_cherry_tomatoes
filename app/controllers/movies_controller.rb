@@ -5,7 +5,8 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    # include reviews and review user in movie
+    @movie = Movie.includes(reviews: :user).find(params[:id])
   end
 
   def new
