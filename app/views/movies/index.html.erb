@@ -1,13 +1,19 @@
-<div class="col-md-12">
+<div class="col-md-10">
   <h1>Rotten Mangoes</h1>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-2">
+  <%= render 'new_movie_modal' %>
+</div>
+
+<div class="col-md-12 search-form">
   <%= render 'search_form' %>
 </div>
 
 <div class="col-md-12">
   <% @movies.each do |movie| %>
-    <%= render partial: 'movie', locals: { movie: movie } %>
+    <div class="row movie-row" id="movie" >
+      <%= render partial: 'movie', locals: { movie: movie } %>
+    </div>
   <% end %>
 </div>
