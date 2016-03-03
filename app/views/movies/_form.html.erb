@@ -1,37 +1,51 @@
-<%= form_for @movie, html: { multipart: true } do |f| %>
+<%= form_for @movie, html: { multipart: true, class: 'form-horizontal' } do |f| %>
 
   <%= render 'errors' %>
 
-  <div>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class='form-group'>
+    <%= f.label :title, class: 'sr-only control-label' %>
+    <div class='col-sm-12'>
+      <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
+    </div>
   </div>
-  <div>
-    <%= f.label :release_date %><br>
-    <%= f.date_field :release_date %>
+  <div class='form-group'>
+    <%= f.label :release_date, class: 'sr-only control-label' %>
+    <div class='col-sm-12'>
+      <%= f.date_field :release_date, placeholder: 'yyyy/mm/dd', class: 'form-control' %>
+    </div>
   </div>
-  <div>
-    <%= f.label :director %><br>
-    <%= f.text_field :director %>
+  <div class='form-group'>
+    <%= f.label :director, class: 'sr-only control-label' %>
+    <div class='col-sm-12'>
+      <%= f.text_field :director, placeholder: 'Director', class: 'form-control' %>
+    </div>
   </div>
-  <div>
-    <%= f.label :runtime_in_minutes %><br>
-    <%= f.number_field :runtime_in_minutes %>
+  <div class='form-group'>
+    <%= f.label :runtime_in_minutes, class: 'sr-only control-label' %>
+    <div class='col-sm-12'>
+      <%= f.number_field :runtime_in_minutes, placeholder: 'Runtime (min)', class: 'form-control' %>
+    </div>
   </div>
-  <div>
-    <%= f.label :poster_image %><br>
-    <%= f.file_field :poster_image %><br>
-    <% if f.object.poster_image? %>
-      <%= image_tag f.object.poster_image.url %><br>
-      <%= f.label :remove_poster_image %>
-      <%= f.check_box :remove_poster_image %>
-    <% end %>
+  <div class='form-group'>
+    <div class='col-sm-12'>
+      <%= f.label :poster_image, 'Image' %>
+      <%= f.file_field :poster_image %>
+      <% if f.object.poster_image %>
+        <%= image_tag f.object.poster_image.url %><br>
+        <%= f.label :remove_poster_image %>
+        <%= f.check_box :remove_poster_image %>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+  <div class='form-group'>
+    <%= f.label :description, class: 'sr-only control-label' %>
+    <div class='col-sm-12'>
+      <%= f.text_field :description, placeholder: 'Summary', class: 'form-control' %>
+    </div>
   </div>
-  <div>
-    <%= f.submit 'Submit' %>
+  <div class='form-group'>
+    <div class='col-sm-12'>
+      <%= f.submit 'Submit', class: 'btn btn-default' %>
+    </div>
   </div>
 <% end %>
