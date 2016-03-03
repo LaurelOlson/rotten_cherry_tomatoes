@@ -2,13 +2,20 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Rotten Mangoes</a>
+      <a class="navbar-brand" href="/">Rotten Mangoes</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="/movies">Movies</a></li>
-      <li><a href="/movies/new">New Movie</a></li> 
-      <li><a href="#">Page 3</a></li> 
+      <li class="active"><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Movies', movies_path %></li>
+      <li><%= link_to 'New Movie', new_movie_path %></li> 
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user %>
+        <li>Hello, <%= current_user.full_name %>!</li>
+      <% else %>
+        <li><%= link_to 'Sign Up', new_user_path %></li>
+        <li><%= link_to 'Login', new_session_path %></li>
+      <% end %>
     </ul>
   </div>
 </nav>

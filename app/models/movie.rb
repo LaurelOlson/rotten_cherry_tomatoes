@@ -36,7 +36,7 @@ class Movie < ActiveRecord::Base
       where("runtime_in_minutes < ?", 90)
     elsif runtime == "Over 120 min"
       where("runtime_in_minutes > ?", 120)
-    elsif runtime = "90-120 min"
+    elsif runtime == "90-120 min"
       where("runtime_in_minutes > ? AND runtime_in_minutes < ?", 90, 120)
     end
   end

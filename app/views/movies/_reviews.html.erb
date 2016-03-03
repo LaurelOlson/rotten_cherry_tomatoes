@@ -1,11 +1,25 @@
-<h3>Reviews of <em><%= @movie.title %></em></h3>
-<% if current_user %>
-  <% @movie.reviews.each do |review| %>
-    <p><%= review.text %></p>
-    <p><%= review.rating_out_of_ten %>/10</p>
-    <small>- <%= review.user.firstname %></small><br/>
+<div class="col-md-12">
+  <h2>Reviews</h2>
+</div>
+
+<div class="col-md-12">
+  <% if current_user %>
+    <%= render 'new_review_form' %>
+  <% else %>
+    <p><%= link_to 'Log in', new_session_path %> to add a review! </p>
   <% end %>
-  <p><%= link_to 'Write a review!', new_movie_review_path(@movie) %></p>
-<% else %>
-  <p>Please <%= link_to 'Log in', new_session_path %> to see reviews and add your own. </p>
-<% end %>
+</div>
+
+<div class="col-md-12" id="reviews">
+
+  <% @reviews.each do |review| %>
+    <div id="review">
+      <p><%= review.text %></p>
+      <p><%= review.rating_out_of_ten %>/10</p>
+      <small>- <%= review.user.firstname %></small><br/>
+    </div>
+  <% end %>
+
+  <%= paginate @reviews %>
+  <%= page_entries_info @reviews %>
+</div>

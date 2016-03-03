@@ -4,7 +4,7 @@ RottenMangoes::Application.routes.draw do
 
   resources :movies do
     resources :reviews, only: [:new, :create]
-    resources :search 
+    # resources :search 
   end
 
   resources :users, only: [:new, :create]

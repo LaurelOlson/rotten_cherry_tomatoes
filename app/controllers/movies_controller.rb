@@ -23,6 +23,9 @@ class MoviesController < ApplicationController
   def show
     # include reviews and review user in movie
     @movie = Movie.includes(reviews: :user).find(params[:id])
+    @reviews = @movie.reviews.order(created_at: :desc).page(params[:page]).per(10)
+    @review = @movie.reviews.build
+    @review.user_id = current_user.id
   end
 
   def new

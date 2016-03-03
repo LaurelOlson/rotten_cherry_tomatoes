@@ -1,0 +1,26 @@
+<%= form_for [@movie, @review], html: { class: 'form-horizontal' }, remote: true do |f| %> <!-- Use array syntax to handle nested resource forms (review is nested in movie) -->
+
+  <!-- Display errors -->
+  <ul id="review-errors">
+  </ul>
+
+  <!-- Dipslay form -->
+  <div class="form-group">
+    <%= f.label :text, class: 'sr-only control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_area 'text', placeholder: 'Add a review..', class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :rating_out_of_ten, 'Rating', class: 'sr-only control-label' %>
+    <div class="col-sm-12">
+      <%= f.select(:rating_out_of_ten, options_for_select(['Rating', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), class: 'form-control') %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <%= f.submit 'Submit', class: "btn btn-default" %>
+    </div>
+  </div>
+
+<% end %>
