@@ -2,6 +2,8 @@ class MoviesController < ApplicationController
 
   def index
 
+    @movie = Movie.new
+
     title = params[:title] unless params[:title] == ""
     director = params[:director] unless params[:director] == ""
     runtime = params[:runtime] unless params[:runtime] == ""
@@ -14,7 +16,7 @@ class MoviesController < ApplicationController
       @movies.flatten!
 
     else # Show all
-      @movies = Movie.all
+      @movies = Movie.all.order(created_at: :desc)
 
     end
 
@@ -24,8 +26,10 @@ class MoviesController < ApplicationController
     # include reviews and review user in movie
     @movie = Movie.includes(reviews: :user).find(params[:id])
     @reviews = @movie.reviews.order(created_at: :desc).page(params[:page]).per(10)
-    @review = @movie.reviews.build
-    @review.user_id = current_user.id
+    if current_user
+      @review = @movie.reviews.build
+      @review.user_id = current_user.id
+    end
   end
 
   def new
@@ -38,6 +42,18 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+
+    # respond_to do |format|
+    #   if @movie.save
+    #     format.js
+    #   end
+    # end
+
+    # if @movie.save
+    #   render json: { movie: @movie, poster_url: @movie.poster_image.url, avg_review: @movie.review_average, movie_url: movie_path(@movie), release_date: @movie.format_release_date }, status: 200
+    # else
+    #   render json: @movie.errors.full_messages, status: :unprocessable_entity
+    # end
 
     if @movie.save
       redirect_to movies_path, notice: "#{@movie.title} was submitted successfully!"
