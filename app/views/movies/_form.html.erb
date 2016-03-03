@@ -30,11 +30,6 @@
     <div class='col-sm-12'>
       <%= f.label :poster_image, 'Image' %>
       <%= f.file_field :poster_image %>
-      <% if f.object.poster_image %>
-        <%= image_tag f.object.poster_image.url %><br>
-        <%= f.label :remove_poster_image %>
-        <%= f.check_box :remove_poster_image %>
-      <% end %>
     </div>
   </div>
   <div class='form-group'>
@@ -43,9 +38,9 @@
       <%= f.text_field :description, placeholder: 'Summary', class: 'form-control' %>
     </div>
   </div>
-  <div class='form-group'>
-    <div class='col-sm-12'>
-      <%= f.submit 'Submit', class: 'btn btn-default' %>
-    </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>  
   </div>
 <% end %>
