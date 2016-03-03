@@ -1,15 +1,11 @@
-<div class="col-sm-12">
-  <div class="row no-gutter">
-    <div class="col-sm-2 poster-img">
-      <%= link_to image_tag(movie.poster_image.url, class: "index-poster-img"), movie_path(movie) %>
-    </div>
+<div class="col-sm-2 poster-img">
+  <%= link_to image_tag(movie.poster_image.url, class: "index-poster-img"), movie_path(movie) %>
+</div>
 
-    <div class="col-sm-10">
-      <h2><%= link_to movie.title, movie_path(movie) %></h2>
-      <h3>Average Rating: <%= movie.review_average %></h3>
-      <h3><%= formatted_date(movie.release_date) %></h3>
-      <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes </h4>
-      <p><%= movie.description %></p>
-    </div>
-  </div>
+<div class="col-sm-10" id="info">
+  <h2><%= link_to movie.title, movie_path(movie) %></h2>
+  <h3>Average Rating: <%= movie.review_average %></h3>
+  <h3><%= formatted_date(movie.release_date) %></h3>
+  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes </h4>
+  <p><%= movie.description %></p>
 </div>
