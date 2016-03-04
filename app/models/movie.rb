@@ -23,12 +23,8 @@ class Movie < ActiveRecord::Base
 
   mount_uploader :poster_image, MoviePosterUploader
 
-  def self.search_title(title) 
-    where("title like ?", "%#{title}%")
-  end
-
-  def self.search_director(director)
-    where("director like ?", "%#{director}%")
+  def self.search_text(text)
+    where("title like ? OR director like ?", "%#{text}%", "%#{text}%")
   end
 
   def self.search_runtime(runtime)
@@ -42,7 +38,11 @@ class Movie < ActiveRecord::Base
   end
 
   def review_average
-    reviews.sum(:rating_out_of_ten)/reviews.size unless reviews.size == 0
+    reviews.size == 0 ? 0 : reviews.sum(:rating_out_of_ten)/reviews.size
+  end
+
+  def formatted_release_date
+    release_date.strftime("%b %d, %Y")
   end
 
   protected

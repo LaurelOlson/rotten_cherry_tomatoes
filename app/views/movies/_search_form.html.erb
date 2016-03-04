@@ -1,11 +1,7 @@
-<%= form_tag(movies_path, { method: "get", class: "form-inline" }) do %>
+<%= form_tag movies_path, { method: "get", class: "form-inline", id: "search", remote: true } do %>
   <div class="form-group">
-    <%= label_tag :title, "Title", class: "sr-only" %>
-    <%= text_field_tag :title, nil, class: "form-control", placeholder: "Title" %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :director, "Director", class: "sr-only" %>
-    <%= text_field_tag :director, nil, class: "form-control", placeholder: "Director" %>
+    <%= label_tag :text, "Search", class: "sr-only" %>
+    <%= text_field_tag :text, nil, class: "form-control", placeholder: "Search" %>
   </div>
   <%= label_tag :runtime, "Runtime:", class: "sr-only" %>
   <%= select_tag :runtime, options_for_select(['Runtime', 'Under 90 min', '90-120 min', 'Over 120 min']), class: "form-control", placeholder: "Runtime" %>
