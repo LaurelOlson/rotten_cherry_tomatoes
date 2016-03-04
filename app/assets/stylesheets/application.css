@@ -12,11 +12,3 @@
  *= require_tree .
  */
 
-body {
-  padding-top: 70px;
-}
-
-.no-gutter > [class*='col-'] {
-  padding-right: 0px;
-  padding-left: 0px;
-}
