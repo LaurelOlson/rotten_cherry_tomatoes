@@ -21,8 +21,8 @@ class MoviesController < ApplicationController
       @movies.each do |movie| 
         movie_display_info = {
           title: movie.title,
-          rating: movie.review_average,
-          date: movie.formatted_release_date,
+          avg_rating: movie.review_average,
+          release_date: movie.formatted_release_date,
           poster_url: movie.poster_image.url,
           url: "/movies/#{movie.id}",
           director: movie.director,
@@ -32,7 +32,11 @@ class MoviesController < ApplicationController
         @movies_info << movie_display_info
       end
 
-      render json: { movies: @movies_info }, status: 200
+      if @movies_info.count > 0
+        render json: { movies: @movies_info }, status: 200
+      else
+        render json: 'No Results Found', status: :unprocessable_entity
+      end
 
     else # Show all
       @movies = Movie.all.order(created_at: :desc)

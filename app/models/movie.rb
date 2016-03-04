@@ -38,7 +38,7 @@ class Movie < ActiveRecord::Base
   end
 
   def review_average
-    reviews.size == 0 ? 0 : reviews.sum(:rating_out_of_ten)/reviews.size
+    reviews.size == 0 ? 'no reviews!' : reviews.sum(:rating_out_of_ten)/reviews.size
   end
 
   def formatted_release_date
