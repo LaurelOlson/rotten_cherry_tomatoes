@@ -4,16 +4,35 @@ class MoviesController < ApplicationController
 
     @movie = Movie.new
 
-    title = params[:title] unless params[:title] == ""
-    director = params[:director] unless params[:director] == ""
+    text = params[:text] unless params[:text] == ""
     runtime = params[:runtime] unless params[:runtime] == ""
 
-    if title || director || runtime # Search
+    if text || runtime # Search
       @movies = []
-      @movies << Movie.search_title(title) if title
-      @movies << Movie.search_director(director) if director
-      @movies << Movie.search_runtime(runtime) if runtime
+      if text && Movie.search_text(text)
+        @movies << Movie.search_text(text)
+      elsif runtime && Movie.search_runtime(runtime)
+        @movies << Movie.search_runtime(runtime)
+      end
       @movies.flatten!
+
+      @movies_info = []
+
+      @movies.each do |movie| 
+        movie_display_info = {
+          title: movie.title,
+          rating: movie.review_average,
+          date: movie.formatted_release_date,
+          poster_url: movie.poster_image.url,
+          url: "/movies/#{movie.id}",
+          director: movie.director,
+          description: movie.description,
+          runtime: movie.runtime_in_minutes
+        }
+        @movies_info << movie_display_info
+      end
+
+      render json: { movies: @movies_info }, status: 200
 
     else # Show all
       @movies = Movie.all.order(created_at: :desc)
