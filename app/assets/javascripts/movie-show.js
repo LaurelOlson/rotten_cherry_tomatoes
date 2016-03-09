@@ -31,20 +31,29 @@ $(function() {
       .append(infoDiv);
   }
 
-  function displayReviews(review, index, array) {
-    
+  function displayReview(review) {
+    var text = $('<p>').text(review.text);
+    var rating = $('<p>').text(review.rating + '/10');
+    var reviewer = $('<small>').text(review.user_name);
+
+    $('#review')
+      .append(text)
+      .append(rating)
+      .append(reviewer);
   };
 
   $('#results').on('click', '.movie', function(event) {
     event.preventDefault();
     $('#results').empty();
     var url = '/movies/' + $(this).data('id');
-    // var reviews = $(this).data('reviews');
     $.getJSON(url, function(data) {
       debugger
       displayMovie(data.movie);
-      // displayReviews(data.reviews);
-    })
+      $('#reviews').addClass('show')
+      $.each(data.reviews, function(i, review) {
+        displayReview(review);
+      });
+    });
   });
 
 });

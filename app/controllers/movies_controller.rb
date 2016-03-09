@@ -51,6 +51,16 @@ class MoviesController < ApplicationController
     # include reviews and review user in movie
     @movie = Movie.includes(reviews: :user).find(params[:id])
     @reviews = @movie.reviews.order(created_at: :desc).page(params[:page]).per(10)
+    reviews = []
+
+    @reviews.each do |review|
+      review_display_info = {
+        text: review.text,
+        rating: review.rating_out_of_ten,
+        user_name: review.user.firstname
+      }
+      reviews << review
+    end
 
     movie = {
       poster_url: @movie.poster_image.url,
@@ -62,7 +72,7 @@ class MoviesController < ApplicationController
       description: @movie.description
     }
 
-    render json: { movie: movie, reviews: @reviews, current_user: current_user }
+    render json: { movie: movie, reviews: reviews }
     # if current_user
     #   @review = @movie.reviews.build
     #   @review.user_id = current_user.id

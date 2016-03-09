@@ -11,5 +11,24 @@
 </div>
 
 <div class="col-md-12" id="results">
+  <!-- Index/Search/Show results -->
+</div>
+
+<div class="col-md-12" id="reviews">
+  
+  <h2>Reviews</h2>
+
+  <div class="col-sm-12">
+    <% if current_user %>
+      <%= render 'new_review_form' %>
+    <% else %>
+      <p><%= link_to 'Log in', new_session_path %> to add a review! </p>
+    <% end %>
+  </div>
+
+  <div class="col-sm-12">
+    <div id="review">
+    </div>
+  </div>
 
 </div>
