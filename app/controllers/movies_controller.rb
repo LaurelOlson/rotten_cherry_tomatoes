@@ -5,8 +5,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new
 
     text = params[:text] unless params[:text] == ""
-    runtime = params[:runtime] unless params[:runtime] == ""
-
+    runtime = params[:runtime] unless params[:runtime] == "Runtime"
     if text || runtime # Search
       @movies = []
       if text && Movie.search_text(text)
@@ -16,31 +15,34 @@ class MoviesController < ApplicationController
       end
       @movies.flatten!
 
-      @movies_info = []
-
-      @movies.each do |movie| 
-        movie_display_info = {
-          title: movie.title,
-          avg_rating: movie.review_average,
-          release_date: movie.formatted_release_date,
-          poster_url: movie.poster_image.url,
-          url: "/movies/#{movie.id}",
-          director: movie.director,
-          description: movie.description,
-          runtime: movie.runtime_in_minutes
-        }
-        @movies_info << movie_display_info
-      end
-
-      if @movies_info.count > 0
-        render json: { movies: @movies_info }, status: 200
-      else
-        render json: 'No Results Found', status: :unprocessable_entity
-      end
-
     else # Show all
       @movies = Movie.all.order(created_at: :desc)
+    end
 
+    @movies_info = []
+
+    @movies.each do |movie| 
+      movie_display_info = {
+        id: movie.id,
+        title: movie.title,
+        avg_rating: movie.review_average,
+        release_date: movie.formatted_release_date,
+        poster_url: movie.poster_image.url,
+        url: "/movies/#{movie.id}",
+        director: movie.director,
+        description: movie.description,
+        runtime: movie.runtime_in_minutes
+      }
+      @movies_info << movie_display_info
+    end
+
+    if @movies_info.count > 0
+      respond_to do |format|
+        format.json { render json: { movies: @movies_info }, status: 200 }
+        format.html
+      end
+    else
+      render json: 'No Results Found', status: :unprocessable_entity
     end
 
   end

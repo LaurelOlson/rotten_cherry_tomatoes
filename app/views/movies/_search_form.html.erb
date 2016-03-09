@@ -1,9 +1,14 @@
-<%= form_tag movies_path, { method: "get", class: "form-inline", id: "search", remote: true } do %>
+<div class="form-inline">
   <div class="form-group">
-    <%= label_tag :text, "Search", class: "sr-only" %>
-    <%= text_field_tag :text, nil, class: "form-control", placeholder: "Search", id: "search-text" %>
+    <label for="search-text" class="sr-only"></label>
+    <input type="text" class="form-control" placeholder="Search" id="search-text">
   </div>
-  <%= label_tag :runtime, "Runtime:", class: "sr-only" %>
-  <%= select_tag :runtime, options_for_select(['Runtime', 'Under 90 min', '90-120 min', 'Over 120 min']), class: "form-control", placeholder: "Runtime" %>
-  <%= submit_tag "Search", class: "btn btn-default" %>
-<% end %>
+  <label for="runtime" class="sr-only"></label>
+  <select class="form-control" id="search-runtime">
+    <option>Runtime</option>
+    <option>Under 90 min</option>
+    <option>90-120 min</option>
+    <option>Over 120 min</option>
+  </select>
+  <button class="btn btn-default" id="search">Search</button>
+</div>

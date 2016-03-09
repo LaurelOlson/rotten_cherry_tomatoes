@@ -8,22 +8,22 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Rotton Mangoes</a>
+      <img class="navbar-image" src="/logo.png"/>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to 'Home', root_path %><span class="sr-only">(current)</span></li>
-        <li><%= link_to 'Movies', movies_path %></li>
+        <li class="nav-li"><a href="/">Home</a><span class="sr-only">(current)</span></li>
+        <li class="nav-li"><a href="#" id="movies">Movies</a></li>
         <li><button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">Add a Movie</button></li>
       </ul>
         <% if current_user %>
-          <p class="navbar-text navbar-right">Hello, <%= current_user.firstname.capitalize %>!</p>
+          <p class="navbar-text navbar-right nav-li">Hello, <%= current_user.firstname.capitalize %>!</p>
         <% else %>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'Sign Up', new_user_path %></li>
-            <li><%= link_to 'Login', new_session_path %></li>
+            <li class="nav-li"><%= link_to 'Sign Up', new_user_path %></li>
+            <li class="nav-li"><%= link_to 'Login', new_session_path %></li>
           </ul>
         <% end %>
     </div><!-- /.navbar-collapse -->
