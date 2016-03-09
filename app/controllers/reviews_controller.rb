@@ -12,22 +12,19 @@ class ReviewsController < ApplicationController
   def create
     @review = @movie.reviews.build(review_params)
     @review.user_id = current_user.id
+    @review.save
+
+    results = { success: false }
     
     if @review.save
-      render json: {review: @review, user: current_user.firstname.capitalize}, status: 200
+      results[:success] = true
+      respond_to do |format|
+        format.json { render json: results }
+        format.html
+      end
     else
       render json: @review.errors.full_messages, status: :unprocessable_entity
     end
-
-    # respond_to do |format|
-    #   if @review.save
-    #     # format.html { redirect_to @movie, notice: 'Review Added!' }
-    #     format.json { render json: 
-    #   else
-    #     # format.html { render :new }
-    #     format.json { render json: @review.errors, status: :unprocessable_entity }
-    #   end
-    # end
 
   end
 

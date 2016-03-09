@@ -57,12 +57,14 @@ class MoviesController < ApplicationController
       review_display_info = {
         text: review.text,
         rating: review.rating_out_of_ten,
-        user_name: review.user.firstname
+        author: review.user.firstname
       }
-      reviews << review
+      reviews << review_display_info
     end
 
     movie = {
+      current_user: current_user.firstname.capitalize,
+      id: @movie.id,
       poster_url: @movie.poster_image.url,
       title: @movie.title,
       avg_rating: @movie.review_average,
@@ -89,18 +91,6 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-
-    # respond_to do |format|
-    #   if @movie.save
-    #     format.json { }
-    #   end
-    # end
-
-    # if @movie.save
-    #   render json: { movie: @movie, poster_url: @movie.poster_image.url, avg_review: @movie.review_average, movie_url: movie_path(@movie), release_date: @movie.format_release_date }, status: 200
-    # else
-    #   render json: @movie.errors.full_messages, status: :unprocessable_entity
-    # end
 
     if @movie.save
       redirect_to movies_path, notice: "#{@movie.title} was submitted successfully!"

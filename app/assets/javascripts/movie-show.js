@@ -34,12 +34,16 @@ $(function() {
   function displayReview(review) {
     var text = $('<p>').text(review.text);
     var rating = $('<p>').text(review.rating + '/10');
-    var reviewer = $('<small>').text(review.user_name);
+    var reviewer = $('<small>').text(review.author);
+    var reviewDiv = $('<div>').addClass('col-sm-12')
 
-    $('#review')
+    $(reviewDiv)
       .append(text)
       .append(rating)
       .append(reviewer);
+
+    $('#show-reviews').append(reviewDiv);
+
   };
 
   $('#results').on('click', '.movie', function(event) {
@@ -47,9 +51,9 @@ $(function() {
     $('#results').empty();
     var url = '/movies/' + $(this).data('id');
     $.getJSON(url, function(data) {
-      debugger
       displayMovie(data.movie);
       $('#reviews').addClass('show')
+      $('#add-review').attr({'data-id': data.movie.id, 'data-user': data.movie.current_user });
       $.each(data.reviews, function(i, review) {
         displayReview(review);
       });
