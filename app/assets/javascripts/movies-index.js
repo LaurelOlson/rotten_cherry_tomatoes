@@ -23,14 +23,33 @@ $(function() {
       .append(dirRuntime)
       .append(description);
 
-    $('#results').append(row)
+    $(row)
       .append(imgDiv)
-      .append(infoDiv);
+      .append(infoDiv)
+
+    $('#results').append(row)
+  }
+
+  function search() {
+    $('#results').empty();
+    $('#html-index').empty();
+    $('#reviews').removeClass('show');
+    $.getJSON('/movies', { text: $('#search-text').val(), runtime: $('#search-runtime').val() }, function(movies) {
+      $.each(movies, function(i, movies) {
+        $.each(movies, function(i, movie) {
+          displayMovie(movie);
+        })
+      });
+    });
+    $('#search-text').val('').focus();
+    $('#runtime').val('Runtime');
   }
 
   $('#movies').on('click', function(event) {
     event.preventDefault();
     $('#results').empty();
+    $('#html-index').empty();
+    $('#reviews').removeClass('show');
     $.getJSON('/movies', function(movies) {
       $.each(movies, function(i, movies) {
         $.each(movies, function(i, movie) {
@@ -43,17 +62,14 @@ $(function() {
 
   $('#search').on('click', function(event) {
     event.preventDefault();
-    $('#results').empty();
-    $.getJSON('/movies', { text: $('#search-text').val(), runtime: $('#search-runtime').val() }, function(movies) {
-      $.each(movies, function(i, movies) {
-        $.each(movies, function(i, movie) {
-          displayMovie(movie);
-        })
-      });
-    });
-    debugger
-    $('#search-text').val('').focus();
-    $('#runtime').val('Runtime');
+    search();
+  })
+
+  $('#search-text').keypress(function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      search();
+    }
   })
 
 })

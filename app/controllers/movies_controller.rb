@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
     if @movies_info.count > 0
       respond_to do |format|
         format.json { render json: { movies: @movies_info }, status: 200 }
-        format.html
+        format.html { @movies }
       end
     else
       render json: 'No Results Found', status: :unprocessable_entity
@@ -62,8 +62,14 @@ class MoviesController < ApplicationController
       reviews << review_display_info
     end
 
+    if current_user
+      current_user_name = current_user.firstname.capitalize
+    else
+      current_user_name = ''
+    end
+
     movie = {
-      current_user: current_user.firstname.capitalize,
+      current_user: current_user_name,
       id: @movie.id,
       poster_url: @movie.poster_image.url,
       title: @movie.title,

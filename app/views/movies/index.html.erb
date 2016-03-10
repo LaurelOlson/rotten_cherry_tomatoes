@@ -1,22 +1,27 @@
-<div class="col-md-10">
-  <h1></h1>
-</div>
-
 <div class="col-md-2">
   <%= render 'new_movie_modal' %>
 </div>
 
 <div class="col-md-12 search-form">
-  <%= render 'search_form' %>
+<!-- render search form -->
 </div>
 
 <div class="col-md-12" id="results">
   <!-- Index/Search/Show results -->
+
+  <% if @movies %>
+    <% @movies.each do |movie| %>
+      <%= render partial: 'movie', locals: {movie: movie} %>
+    <% end %>
+  <% end %>
+
 </div>
 
-<div class="col-md-12" id="reviews">
-  
-  <h2>Reviews</h2>
+<div id="reviews">
+
+  <div class="col-sm-12">
+    <h2>Reviews</h2>
+  </div>
 
   <div class="col-sm-12">
     <% if current_user %>
@@ -26,7 +31,7 @@
     <% end %>
   </div>
 
-  <div class="col-sm-12" id="show-reviews">
+  <div id="show-reviews">
   </div>
 
 </div>

@@ -26,9 +26,11 @@ $(function() {
       .append(dirRuntime)
       .append(description);
 
-    $('#results').append(row)
+    $(row)
       .append(imgDiv)
       .append(infoDiv);
+
+    $('#results').append(row)
   }
 
   function displayReview(review) {
@@ -52,7 +54,7 @@ $(function() {
     var url = '/movies/' + $(this).data('id');
     $.getJSON(url, function(data) {
       displayMovie(data.movie);
-      $('#reviews').addClass('show')
+      $('#reviews').addClass('show');
       $('#add-review').attr({'data-id': data.movie.id, 'data-user': data.movie.current_user });
       $.each(data.reviews, function(i, review) {
         displayReview(review);
