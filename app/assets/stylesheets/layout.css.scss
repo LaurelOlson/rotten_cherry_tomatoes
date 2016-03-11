@@ -68,9 +68,9 @@ footer {
 
 .nav-li {
   padding-top: 9px;
-  color: #000 !important;
+  color: #EFF400 !important;
     a {
-      color: #000 !important;
+      color: #EFF400 !important;
     }
 }
 
@@ -81,4 +81,12 @@ footer {
 
 .review-btn {
   display: none;
+}
+
+a {
+  color: #336600;
+}
+
+a:focus, a:hover {
+  color: #172D01;
 }

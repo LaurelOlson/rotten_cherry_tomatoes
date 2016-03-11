@@ -5,32 +5,21 @@ $(function() {
     var row = $('<div>').addClass('row movie-row');
 
     var imgDiv = $('<div>').addClass('col-sm-3');
-    var img = $('<img>').addClass('show-poster-img').attr({src: movie.poster_url});  
+    var img = $('<img>').addClass('show-poster-img').attr({src: movie.poster_url}).appendTo(imgDiv);  
+
     var infoDiv = $('<div>').addClass('col-sm-9');
-    var edit_link = $('<a>').attr({ href: '#', 'data-id': movie.id }).text('edit | ');
-    var delete_link =$('<a>').attr({ href: '#', 'data-id': movie.id }).text('delete');
-    var edit_delete = $('<p>').append(edit_link).append(delete_link);
-    var title = $('<h1>').text(movie.title);
-    var review = $('<h3>').text('Average Review: ' + movie.avg_rating);
-    var release_date = $('<h3>').text(movie.release_date);
-    var dirRuntime = $('<h4>').text(movie.director + ' | ' + movie.runtime + ' min');
-    var description = $('<p>').text(movie.description);
 
-    $(imgDiv).append(img)
+    var edit_link = $('<a>').attr({ href: '#', 'data-id': movie.id, id: 'edit' }).text('edit');
+    var delete_link = $('<a>').attr({ href: '#', 'data-id': movie.id, id: 'delete' }).text('delete');
 
-    $(infoDiv)
-      .append(title)
-      .append(edit_delete)
-      .append(review)
-      .append(release_date)
-      .append(dirRuntime)
-      .append(description);
+    var title = $('<h1>').text(movie.title).appendTo(infoDiv);
+    var edit_delete = $('<p>').append(edit_link).append(' | ').append(delete_link).appendTo(infoDiv);
+    var review = $('<h3>').text('Average Review: ' + movie.avg_rating).appendTo(infoDiv);
+    var release_date = $('<h3>').text(movie.release_date).appendTo(infoDiv);
+    var dirRuntime = $('<h4>').text(movie.director + ' | ' + movie.runtime + ' min').appendTo(infoDiv);
+    var description = $('<p>').text(movie.description).appendTo(infoDiv);
 
-    $(row)
-      .append(imgDiv)
-      .append(infoDiv);
-
-    $('#results').append(row)
+    row.append(imgDiv).append(infoDiv).appendTo('#results');
   }
 
   function displayReview(review) {

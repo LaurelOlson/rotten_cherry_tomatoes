@@ -34,6 +34,7 @@ $(function() {
     $('#results').empty();
     $('#html-index').empty();
     $('#reviews').removeClass('show');
+
     $.getJSON('/movies', { text: $('#search-text').val(), runtime: $('#search-runtime').val() }, function(movies) {
       $.each(movies, function(i, movies) {
         $.each(movies, function(i, movie) {
@@ -68,6 +69,9 @@ $(function() {
   $('#search-text').keypress(function(e) {
     if (e.which == 13) {
       e.preventDefault();
+      if ($('#search-text').val() == '') {
+        return false;
+      }
       search();
     }
   })
