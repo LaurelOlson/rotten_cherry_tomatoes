@@ -4,20 +4,23 @@ class MoviesController < ApplicationController
 
     @movie = Movie.new
 
-    text = params[:text] unless params[:text] == ""
-    runtime = params[:runtime] unless params[:runtime] == "Runtime"
-    if text || runtime # Search
-      @movies = []
-      if text && Movie.search_text(text)
-        @movies << Movie.search_text(text)
-      elsif runtime && Movie.search_runtime(runtime)
-        @movies << Movie.search_runtime(runtime)
-      end
-      @movies.flatten!
+    @movies = Movie.search(params[:search]).order(created_at: :desc).page(params[:page]).per(10)
 
-    else # Show all
-      @movies = Movie.all.order(created_at: :desc)
-    end
+    # text = params[:text] unless params[:text] == ""
+    # runtime = params[:runtime] unless params[:runtime] == "Runtime"
+
+    # if text || runtime # Search
+    #   @movies = []
+    #   if text && Movie.search_text(text)
+    #     @movies << Movie.search(text)
+    #   elsif runtime && Movie.search_runtime(runtime)
+    #     @movies << Movie.search_runtime(runtime)
+    #   end
+    #   @movies.flatten!
+
+    # else # Show all
+    #   @movies = Movie.all.order(created_at: :desc).page(params[:page]).per(10)
+    # end
 
     @movies_info = []
 
@@ -38,8 +41,9 @@ class MoviesController < ApplicationController
 
     if @movies_info.count > 0
       respond_to do |format|
-        format.json { render json: { movies: @movies_info }, status: 200 }
-        format.html { @movies }
+        format.json {}
+        format.html
+        format.js {}
       end
     else
       render json: 'No Results Found', status: :unprocessable_entity
@@ -64,6 +68,8 @@ class MoviesController < ApplicationController
 
     if current_user
       current_user_name = current_user.firstname.capitalize
+      @review = @movie.reviews.build
+      @review.user_id = current_user.id
     else
       current_user_name = ''
     end
@@ -80,11 +86,12 @@ class MoviesController < ApplicationController
       description: @movie.description
     }
 
-    render json: { movie: movie, reviews: reviews }
-    # if current_user
-    #   @review = @movie.reviews.build
-    #   @review.user_id = current_user.id
-    # end
+    respond_to do |format|
+      format.json { render json: { movie: movie, reviews: reviews } }
+      format.js {}
+      format.html
+    end
+
   end
 
   def new

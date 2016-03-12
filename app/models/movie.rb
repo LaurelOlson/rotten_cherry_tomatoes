@@ -23,8 +23,12 @@ class Movie < ActiveRecord::Base
 
   mount_uploader :poster_image, MoviePosterUploader
 
-  def self.search_text(text)
-    where("title like ? OR director like ?", "%#{text}%", "%#{text}%")
+  def self.search(text)
+    if text
+      where("title like ? OR director like ?", "%#{text}%", "%#{text}%")
+    else
+      scoped
+    end
   end
 
   def self.search_runtime(runtime)

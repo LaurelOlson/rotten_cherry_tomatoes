@@ -8,24 +8,30 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="#" id="home"><img class="navbar-image" src="/logo-alt.png"/></a>
+      <a href="/movies" id="home"><img class="navbar-image" src="/logo-alt.png"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left navbar-search" role="search">
+      <%= form_tag movies_path, method: 'get', class: "navbar-form navbar-left navbar-search", remote: true do %>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search" %>
+          <%= submit_tag 'Search', name: nil %>
+        </div>
+      <% end %>
+<!--       <form class="navbar-form navbar-left navbar-search" role="search" action="/movies" data-remote="true" method="get">
         <div class="form-group">
           <label for="search-text" class="control-label"></label>
           <input type="text" class="form-control" placeholder="Search" id="search-text" />
         </div>
-      </form>
+      </form> -->
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li class="dropdown nav-li">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, <%= current_user.firstname.capitalize %><span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#" data-toggle="modal" data-target="#myModal">Add a Movie</a></li>
-              <li><a href="#" id="movies">All Movies</a></li>
+              <li><a href="/movies" id="movies">All Movies</a></li>
               <li><a href="#">Something else here</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#" data-toggle="modal" data-target="#myModal">Add a Movie</a></li>
