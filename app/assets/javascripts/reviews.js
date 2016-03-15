@@ -1,4 +1,4 @@
-$(function() {
+// $(function() {
 
   function displayReview(review) {
     var success_msg = $('<p>').addClass('alert-success').text('Review Added!');
@@ -41,4 +41,4 @@ $(function() {
     } 
   );
 
-});
+// });
