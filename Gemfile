@@ -59,6 +59,7 @@ end
 
 group :production do
   # For Heroku Deploy
+  gem 'puma'
   gem 'pg'
   gem 'rails_12factor'
 end
