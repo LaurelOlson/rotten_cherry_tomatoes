@@ -1,26 +1,11 @@
 class MoviesController < ApplicationController
 
+  before_filter :load_movie
+  before_filter :load_user
+
   def index
 
-    @movie = Movie.new
-
     @movies = Movie.search(params[:search]).order(created_at: :desc).page(params[:page]).per(10)
-
-    # text = params[:text] unless params[:text] == ""
-    # runtime = params[:runtime] unless params[:runtime] == "Runtime"
-
-    # if text || runtime # Search
-    #   @movies = []
-    #   if text && Movie.search_text(text)
-    #     @movies << Movie.search(text)
-    #   elsif runtime && Movie.search_runtime(runtime)
-    #     @movies << Movie.search_runtime(runtime)
-    #   end
-    #   @movies.flatten!
-
-    # else # Show all
-    #   @movies = Movie.all.order(created_at: :desc).page(params[:page]).per(10)
-    # end
 
     @movies_info = []
 
@@ -87,15 +72,14 @@ class MoviesController < ApplicationController
     }
 
     respond_to do |format|
-      format.json { render json: { movie: movie, reviews: reviews } }
-      format.js {}
+      # format.json { render json: { movie: movie, reviews: reviews } }
+      # format.js {}
       format.html
     end
 
   end
 
   def new
-    @movie = Movie.new
   end
 
   def edit
@@ -106,7 +90,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
 
     if @movie.save
-      redirect_to movies_path, notice: "#{@movie.title} was submitted successfully!"
+      redirect_to movies_path
     else
       render :new
     end
@@ -134,4 +118,11 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :release_date, :director, :runtime_in_minutes, :poster_image, :description)
   end
 
+  def load_movie
+    @movie = Movie.new
+  end
+
+  def load_user
+    @user = User.new
+  end
 end

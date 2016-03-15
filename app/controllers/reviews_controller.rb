@@ -3,8 +3,6 @@ class ReviewsController < ApplicationController
   before_filter :load_movie
   before_filter :restrict_access_login
 
-  # respond_to :json
-
   def new
     @review = @movie.reviews.build # .build assigns movie_id to @review
   end
@@ -13,14 +11,11 @@ class ReviewsController < ApplicationController
     @review = @movie.reviews.build(review_params)
     @review.user_id = current_user.id
     @review.save
-
-    results = { success: false }
     
     if @review.save
-      results[:success] = true
       respond_to do |format|
-        format.json { render json: results }
-        format.html
+        format.json { render json: { review: @review, movie: @movie } }
+        format.html { redirect_to movie_path(@movie) }
       end
     else
       render json: @review.errors.full_messages, status: :unprocessable_entity

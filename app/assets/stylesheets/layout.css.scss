@@ -3,12 +3,8 @@ html {
   min-height: 100%;
 }
 
-.navbar-right {
-  margin-right: 0;
-}
-
 body {
-  padding-top: 90px;
+  padding-top: 110px;
 }
 
 .page-body {
@@ -39,39 +35,39 @@ footer {
   padding-top: 20px;
 }
 
+.navbar-right {
+  margin-right: 0;
+}
+
 .navbar-image {
   float: left;
   padding-left: 15px;
   line-height: 20px;
   font-size: 18px;
-  width: 60%;
+  width: 80%;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.active {
-  background-color: #888;
-}
+// .active {
+//   background-color: #888;
+// }
 
-.navbar-btn {
-  background-color: #D0D0D0;
-  margin-top: 17px;
-}
+// .navbar-btn {
+//   background-color: #D0D0D0;
+//   margin-top: 17px;
+// }
 
-.navbar-search {
-  margin-top: 17px;
+.navbar-collapse {
+  margin-top: 2.9em;
 }
 
 .navbar {
   background-color: #336600;
 }
 
-.nav-li {
-  padding-top: 9px;
-  color: #EFF400 !important;
-    a {
-      color: #EFF400 !important;
-    }
+.navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {
+  background-color: #444;
 }
 
 .search-form {

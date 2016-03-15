@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -13,37 +13,35 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <%= form_tag movies_path, method: 'get', class: "navbar-form navbar-left navbar-search", remote: true do %>
+      <%= form_tag movies_path, method: 'get', class: "navbar-form navbar-left", remote: true do %>
         <div class="form-group">
-          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search" %>
-          <%= submit_tag 'Search', name: nil %>
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Find a movie.." %>
         </div>
       <% end %>
-<!--       <form class="navbar-form navbar-left navbar-search" role="search" action="/movies" data-remote="true" method="get">
-        <div class="form-group">
-          <label for="search-text" class="control-label"></label>
-          <input type="text" class="form-control" placeholder="Search" id="search-text" />
-        </div>
-      </form> -->
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li class="dropdown nav-li">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, <%= current_user.firstname.capitalize %><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#" data-toggle="modal" data-target="#myModal">Add a Movie</a></li>
-              <li><a href="/movies" id="movies">All Movies</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Account</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#" data-toggle="modal" data-target="#myModal">Add a Movie</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#newMovie" id="addMovieNav">Add a Movie</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#" id="movies">All Movies</a></li>
+              <li><%= link_to 'Log out', session_path('current'), method: :delete %></li>
             </ul>
           </li>
         <% else %>
-          <li class="nav-li"><%= link_to 'Sign Up', new_user_path %></li>
-          <li class="nav-li"><%= link_to 'Login', new_session_path %></li>
+          <li class="nav-li"><a href="#" data-toggle="modal" data-target="#signUp">Sign Up</a></li>
+          <li class="nav-li"><a href="#" data-toggle="modal" data-target="#login">Login</a></li>
         <% end %>
       </ul>    
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<div class="col-md-2">
+  <%= render '/movies/new_movie_modal' %>
+  <%= render '/sessions/sign_up_modal' %>
+  <%= render '/sessions/login_modal' %>
+</div>

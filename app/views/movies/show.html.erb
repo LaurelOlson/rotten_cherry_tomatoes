@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-9">
     <h1><%= @movie.title %> </h1>
-    <p><%= link_to 'edit', edit_movie_path(@movie) %>, <%= link_to 'delete', movie_path(@movie), method: :delete, data: {confirm: 'You sure?'} %></p>
+    <p><a href="#" data-toggle="modal" data-target="#editMovie" id="addMovieNav">edit</a> | <%= link_to 'delete', movie_path(@movie), method: :delete, data: {confirm: 'You sure?'} %></p>
     <h3>Average Rating: <%= @movie.review_average %></h3>
     <h3>Released: <%= formatted_date(@movie.release_date) %></h3>
     <h4>Dir. <%= @movie.director %> | <%= @movie.runtime_in_minutes %> minutes </h4>
@@ -12,4 +12,6 @@
   </div>
 </div>
 
-<%= render 'reviews' %>
+<div class="col-md-12">
+  <%= render 'reviews' %>
+</div>

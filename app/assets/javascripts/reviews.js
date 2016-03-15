@@ -13,7 +13,7 @@ $(function() {
       .append(rating)
       .append(reviewer);
 
-    $('#show-reviews').prepend(reviewDiv);
+    $('#reviews').prepend(reviewDiv);
   };
 
   $('#review-text').keypress(function(e) {
@@ -21,36 +21,26 @@ $(function() {
       e.preventDefault();
       var postData = { 
         review: {
-          text: $('#text').val(),
-          rating_out_of_ten: $('#rating_out_of_ten').val(), 
-          author: $(this).data('user')
+          text: $('#review-text').val(),
+          rating_out_of_ten: $("input[type='radio'][name='rating_out_of_ten']:checked").val() * 2, 
+          author: $(this).data('user'),
+          movie_id: $(this).data('movie')
         }
       };
 
-      var url = '/movies/' + $(this).data('id') + '/reviews';
+      debugger
+
+      var url = `/movies/${$(this).data('movie')}/reviews`;
       $.post(url, postData, function(result) {
-        review = postData.review
-        displayReview(review);
+        displayReview(postData.review);
       }, 'json');
     }
   })
 
-  $('#add-review').on('click', function(event) {
-    event.preventDefault();
-    var postData = { 
-      review: {
-        text: $('#text').val(),
-        rating_out_of_ten: $('#rating_out_of_ten').val(), 
-        author: $(this).data('user')
-      }
-    };
-
-    var url = '/movies/' + $(this).data('id') + '/reviews';
-    $.post(url, postData, function(result) {
-      review = postData.review
-      debugger
-      displayReview(review);
-    }, 'json');
-  });
+  $(':radio').change(
+    function(){
+      $('.choice').text( this.value + ' stars' );
+    } 
+  )
 
 });

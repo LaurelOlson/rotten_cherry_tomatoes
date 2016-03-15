@@ -1,32 +1,25 @@
 <div id="new-review">
 
-  <form class="form-horizontal">
+  <form class="form-horizontal" data-remote="true" method="post" action="/movies/<%= movie.id %>/reviews">
     <div class="form-group">
+      <div class="col-sm-4"><!-- Want to See --></div>
+      <div class="col-sm-4"><!-- Not interested --></div>
       <label for="rating_out_of_ten" class="sr-only control-label"></label>
-      <div class="col-sm-1">
-        <select class="form-control" name="rating_out_of_ten" id="rating_out_of_ten">
-          <option>Rating</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-        </select>
+      <div class="col-sm-4">
+        <span class="star-rating">
+          <input type="radio" name="rating_out_of_ten" value="1"><i></i>
+          <input type="radio" name="rating_out_of_ten" value="2"><i></i>
+          <input type="radio" name="rating_out_of_ten" value="3"><i></i>
+          <input type="radio" name="rating_out_of_ten" value="4"><i></i>
+          <input type="radio" name="rating_out_of_ten" value="5"><i></i>
+        </span>
       </div>
 
       <label for="text" class="sr-only control-label"></label>
       <div class="col-sm-11">
-        <input type="text" placeholder="Add a review.." class="form-control" name="text" id="review-text" required="required">
+        <input type="text" placeholder="Add a review.." class="form-control" name="text" id="review-text" data-movie="<%= movie.id %>" data-user="<%= current_user %>" required="required">
       </div>
     </div>
     
-    <div class="col-sm-12">
-      <button class="btn btn-default review-btn" id="add-review"></button>
-    </div>
   </form>
 </div>
