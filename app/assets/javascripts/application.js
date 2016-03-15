@@ -14,3 +14,4 @@
 // = require jquery_ujs
 // = require turbolinks
 // = require reviews.js
+// = require movie-new.js
