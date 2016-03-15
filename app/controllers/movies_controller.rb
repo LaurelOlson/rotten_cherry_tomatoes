@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
         format.js {}
       end
     else
-      render json: 'No Results Found', status: :unprocessable_entity
+      # render json: 'No Results Found', status: :unprocessable_entity
     end
 
   end

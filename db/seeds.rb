@@ -9,14 +9,14 @@
 if Rails.env.development?
 
   # Create admin
-  # User.create(
-  #   email: 'admin@admin.com',
-  #   password: 'password',
-  #   password_confirmation: 'password',
-  #   firstname: Faker::Name.first_name,
-  #   lastname: Faker::Name.last_name,
-  #   admin: 1
-  # )
+  User.create(
+    email: 'admin@admin.com',
+    password: 'password',
+    password_confirmation: 'password',
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name,
+    admin: 1
+  )
 
   # Create users
   10.times do
@@ -28,5 +28,13 @@ if Rails.env.development?
       lastname: Faker::Name.last_name
     )
   end
+
+  Movie.create(
+    title: 'Shok',
+    director: 'James Donoughue',
+    runtime_in_minutes: '21',
+    description: 'Shok is a short drama film written and directed by Oscar nominated director Jamie Donoughue. It is based on true events during the Kosovo war. The film is currently in the festival circuit.',
+    release_date: DateTime.parse('04/10/2015 00:00') 
+  )
 
 end

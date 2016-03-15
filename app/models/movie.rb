@@ -19,7 +19,7 @@ class Movie < ActiveRecord::Base
 
   validate :release_date_is_in_the_past
 
-  validate :poster_image_size
+  # validate :poster_image_size
 
   mount_uploader :poster_image, MoviePosterUploader
 
