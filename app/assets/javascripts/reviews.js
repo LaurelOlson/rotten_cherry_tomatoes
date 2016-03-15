@@ -28,9 +28,7 @@ $(function() {
         }
       };
 
-      debugger
-
-      var url = `/movies/${$(this).data('movie')}/reviews`;
+      var url = '/movies/' $(this).data('movie') +'/reviews';
       $.post(url, postData, function(result) {
         displayReview(postData.review);
       }, 'json');

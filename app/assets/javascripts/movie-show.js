@@ -8,7 +8,7 @@
 //     var img = $('<img>').addClass('show-poster-img').attr({src: movie.poster_url}).appendTo(imgDiv);  
 
 //     var infoDiv = $('<div>').addClass('col-sm-9');
-//     var edit_link = $('<a>').attr({ href: `/movies/${movie.id}/edit`, 'data-id': movie.id, 'data-target': "#myModal", 'data-toggle': "modal", id: 'edit' }).text('edit');
+//     var edit_link = $('<a>').attr({ href: '/movies/${movie.id}/edit', 'data-id': movie.id, 'data-target': "#myModal", 'data-toggle': "modal", id: 'edit' }).text('edit');
 //     var delete_link = $('<a>').attr({ href: '/movies/${movie.id}/delete', 'data-id': movie.id, id: 'delete', 'data-confirm': 'Delete?' }).text('delete');
 //     var title = $('<h1>').text(movie.title);
 //     var edit_delete = $('<p>').append(edit_link).append(' | ').append(delete_link);
