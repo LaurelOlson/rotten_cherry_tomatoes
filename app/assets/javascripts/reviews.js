@@ -14,7 +14,7 @@ $(function() {
       .append(reviewer);
 
     $('#reviews').prepend(reviewDiv);
-  };
+  }
 
   $('#review-text').keypress(function(e) {
     if (e.which == 13) {
@@ -33,12 +33,12 @@ $(function() {
         displayReview(postData.review);
       }, 'json');
     }
-  })
+  });
 
   $(':radio').change(
     function(){
       $('.choice').text( this.value + ' stars' );
     } 
-  )
+  );
 
 });
