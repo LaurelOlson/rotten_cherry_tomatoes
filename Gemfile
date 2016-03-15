@@ -60,3 +60,11 @@ gem 'neat'
 gem 'faker', '~> 1.6.3', group: [:development, :test]
 
 gem 'rspec-rails'
+
+group :production do
+  # For Heroku Deploy
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
+ruby '2.1.3'
