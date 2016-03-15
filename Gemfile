@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -41,10 +38,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-# Use debugger
-gem 'pry-rails', group: [:development, :test]
-# gem 'pry-byebug', group: [:development, :test]
-
 # Use file uploader
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
@@ -56,10 +49,13 @@ gem 'kaminari'
 gem 'bourbon'
 gem 'neat'
 
-# User data faker
-gem 'faker', '~> 1.6.3', group: [:development, :test]
-
 gem 'rspec-rails'
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'pry-rails'
+  gem 'faker', '~> 1.6.3'
+end
 
 group :production do
   # For Heroku Deploy
