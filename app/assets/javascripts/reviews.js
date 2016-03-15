@@ -1,4 +1,4 @@
-// $(function() {
+$(function() {
 
   function displayReview(review) {
     var success_msg = $('<p>').addClass('alert-success').text('Review Added!');
@@ -28,7 +28,7 @@
         }
       };
 
-      var url = '/movies/' $(this).data('movie') + '/reviews';
+      var url = '/movies/' + $(this).data('movie') + '/reviews';
       $.post(url, postData, function(result) {
         displayReview(postData.review);
       }, 'json');
@@ -41,4 +41,4 @@
     } 
   );
 
-// });
+});
