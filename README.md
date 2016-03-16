@@ -1,5 +1,6 @@
 # Rotten Cherry Tomatoes
-Movie reviews of short films, because quality > quantity.
+Movie reviews of short films.. because quality over quantity.
+
 [https://rotten-cherry-tomatoes.herokuapp.com/](https://rotten-cherry-tomatoes.herokuapp.com/)
 
 ## Overview
