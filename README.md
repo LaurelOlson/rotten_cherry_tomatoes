@@ -1,28 +1,20 @@
-== README
+## Rotten Cherry Tomatoes
+Movie reviews of short films, because quality > quantity.
+[https://rotten-cherry-tomatoes.herokuapp.com/](https://rotten-cherry-tomatoes.herokuapp.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Overview
+Rotten Cherry Tomatoes is a spin off of Rotten Tomatoes that focuses on reviews for short films. The app allows users to add, edit, and remove movies, rate and write reviews for movies, view all movies, and search movies. 
 
-Things you may want to cover:
+# Development
+Rotten Cherry Tomatoes was developed using Ruby on Rails as a web framework and Bootstrap as a CSS framework. It utlizes Javascript and jQUERY to perform AJAX requests to reduce the need for page reloads. 
 
-* Ruby version
+# Notes
+Stretch Goals 
+- Include use of a movie database api to populate the database rather than relying on user input. 
+- Add profile and account page for user
+- Allow user to add movies to 'want to see' or mark movies as 'not interested'
+- Add movie trailers to 'show movie' page
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Known Bugs
+- Search does not work from 'show movie' page
+- User profile/account links in navbar don't direct anywhere as these pages do not yet exist.
