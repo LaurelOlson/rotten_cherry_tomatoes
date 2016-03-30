@@ -1,8 +1,8 @@
 <div class="col-md-12" id="movie-show">
-  <div class="col-md-3" id="image-show">
+  <div class="col-sm-3" id="image-show">
     <%= image_tag @movie.poster_image.url, class: 'show-poster-img', id: 'image' %>
   </div>
-  <div class="col-md-9">
+  <div class="col-sm-9">
     <h1><%= @movie.title %> </h1>
     <p><a href="#" data-toggle="modal" data-target="#editMovie" id="addMovieNav">edit</a> | <%= link_to 'delete', movie_path(@movie), method: :delete, data: {confirm: 'You sure?'} %></p>
     <h3>Average Rating: <%= @movie.review_average %></h3>
