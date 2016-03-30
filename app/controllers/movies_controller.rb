@@ -72,8 +72,8 @@ class MoviesController < ApplicationController
     }
 
     respond_to do |format|
-      # format.json { render json: { movie: movie, reviews: reviews } }
-      # format.js {}
+      format.json {}
+      format.js {}
       format.html
     end
 

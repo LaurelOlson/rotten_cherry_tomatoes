@@ -15,6 +15,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.json {}
+      format.js
+      format.html 
+    end
+  end
+
   protected
 
   def user_params

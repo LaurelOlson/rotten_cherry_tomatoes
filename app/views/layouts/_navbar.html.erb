@@ -23,7 +23,7 @@
           <li class="dropdown nav-li">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, <%= current_user.firstname.capitalize %><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
+              <li><a href="/users/<%= current_user.id %>">Profile</a></li>
               <li><a href="#">Account</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#" data-toggle="modal" data-target="#newMovie" id="addMovieNav">Add a Movie</a></li>
