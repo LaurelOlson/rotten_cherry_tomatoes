@@ -19,3 +19,4 @@ Stretch Goals
 Known Bugs
 - Search does not work from 'show movie' page
 - User profile/account links in navbar don't direct anywhere as these pages do not yet exist.
+- Reviews aren't submitting on Heroku site
