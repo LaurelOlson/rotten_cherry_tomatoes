@@ -15,8 +15,3 @@ Stretch Goals
 - Add profile and account page for user
 - Allow user to add movies to 'want to see' or mark movies as 'not interested'
 - Add movie trailers to 'show movie' page
-
-Known Bugs
-- Search does not work from 'show movie' page
-- User profile/account links in navbar don't direct anywhere as these pages do not yet exist.
-- Reviews aren't submitting on Heroku site
