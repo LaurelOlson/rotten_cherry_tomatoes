@@ -13,11 +13,6 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <%= form_tag movies_path, method: 'get', class: "navbar-form navbar-left", remote: true do %>
-        <div class="form-group">
-          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Find a movie.." %>
-        </div>
-      <% end %>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li class="dropdown nav-li">
