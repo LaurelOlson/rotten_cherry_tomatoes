@@ -1,3 +1,11 @@
+<div class="col-md-12">
+  <%= form_tag movies_path, method: 'get', remote: true do %>
+    <div class="form-group">
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Find a movie.." %>
+    </div>
+  <% end %>
+</div>
+
 <div class="col-md-12" id="results">
   <!-- Index/Search/Show results -->
 
